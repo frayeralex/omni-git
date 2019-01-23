@@ -24,6 +24,20 @@ const startImport = (client, params) => client.request({
 });
 
 /**
+ * Get import progress
+ * @see https://developer.github.com/v3/migrations/source_imports/#get-import-progress
+ * @param {RequestClient} client
+ * @param {Object} params
+ * @param {String} params.owner
+ * @param {String} params.repo
+ * @returns {AxiosPromise<any>}
+ */
+const getImportProgress = (client, params) => client.request({
+  url: `/repos/${params.owner}/${params.repo}/import`,
+  method: 'GET'
+});
+
+/**
  * Handle
  * @see https://developer.github.com/v3/repos/#create
  * @param {RequestClient} client
@@ -41,5 +55,6 @@ const createRepo = (client, params) => client.request({
 
 module.exports = {
   startImport,
-  createRepo
+  createRepo,
+  getImportProgress
 };

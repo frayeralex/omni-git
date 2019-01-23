@@ -10,12 +10,27 @@ const githubImport = async (req, res, next) => {
       ...params,
       ...payload
     });
-    return res.json({ data });
+    return res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const githubImportStatus = async (req, res, next) => {
+  const { query: { accessToken }, params } = req;
+  const client = requestClient.createGithubClient({ accessToken });
+
+  try {
+    const { data } = await githubApiService.getImportProgress(client, {
+      ...params
+    });
+    return res.json(data);
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = {
-  githubImport
+  githubImport,
+  githubImportStatus
 };

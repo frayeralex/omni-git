@@ -4,42 +4,15 @@ const Joi = require('joi');
  * @swagger
  *
  * parameters:
- *   PutMigrationGithubImportPayload:
- *     type: object
- *     required:
- *       - vcsUrl
- *       - vcs
- *       - vcsUsername
- *       - vcsPassword
- *       - accessToken
- *     properties:
- *       vcsUrl:
- *         type: string
- *         example: "https://alex@bitbucket.org/alex/repo.git"
- *       vcs:
- *         type: string
- *         example: "git"
- *       vcsUsername:
- *         type: string
- *         example: "alex"
- *       vcsPassword:
- *         type: string
- *         example: "password"
- *       accessToken:
- *         type: string
- *         example: "password"
- *
- *   PutMigrationGithubImportOwnerParam:
- *     in: query
+ *   MigrationGithubOwnerParam:
+ *     in: path
  *     name: owner
- *     required: true
  *     type: string
  *     description: "github username"
  *
- *   PutMigrationGithubImportRepoParam:
- *     in: query
+ *   MigrationGithubRepoParam:
+ *     in: path
  *     name: repo
- *     required: true
  *     type: string
  *     description: "target repository name"
  */
@@ -64,6 +37,14 @@ const githubImport = {
   },
 };
 
+const githubImportStatus = {
+  query: {
+    accessToken: Joi.string()
+      .required(),
+  }
+};
+
 module.exports = {
-  githubImport
+  githubImport,
+  githubImportStatus
 };
