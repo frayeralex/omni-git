@@ -5,7 +5,6 @@
  * @param {Object} params
  * @param {String} params.owner
  * @param {String} params.repo
- * @param {String} params.accessToken
  * @param {String} params.vcsUrl
  * @param {String} params.vcs
  * @param {String} params.vcsUsername
